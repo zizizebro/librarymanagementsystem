@@ -125,7 +125,8 @@ public class MemberFrame extends JInternalFrame implements ActionListener {
                 try  
                 {  
                 	DataAccessFacde.saveObject(member);
-                	JOptionPane.showMessageDialog(btn1, "Data Saved Successfully");   
+                	JOptionPane.showMessageDialog(btn1, "Data Saved Successfully"); 
+                	clearTextFields();
                 }  
                 catch (Exception ex)   
                 {  
@@ -134,16 +135,20 @@ public class MemberFrame extends JInternalFrame implements ActionListener {
           }   
           else  
           {  
-            tf1.setText("");  
-            tf2.setText("");  
-            tf3.setText("");  
-            tf4.setText("");  
-            tf5.setText("");  
-            tf6.setText("");  
-            tf7.setText("");  
-            tf8.setText("");  
-            tf9.setText("");  
+        	  clearTextFields();
           }  
-    }   
+    } 
+    
+    private void clearTextFields() {
+    	 tf1.setText("");  
+         tf2.setText("");  
+         tf3.setText("");  
+         tf4.setText("");  
+         tf5.setText("");  
+         tf6.setText("");  
+         tf7.setText("");  
+         tf8.setText("");  
+         tf9.setText("");  
+    }
 
 }

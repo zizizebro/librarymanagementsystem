@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -13,6 +15,8 @@ import javax.swing.JTextField;
 
 import edu.mum.dao.DataAccessFacde;
 import mum.edu.domain.Address;
+import mum.edu.domain.Author;
+import mum.edu.domain.Book;
 import mum.edu.domain.Member;
 
 public class BookFrame extends JInternalFrame implements ActionListener {
@@ -149,23 +153,19 @@ public class BookFrame extends JInternalFrame implements ActionListener {
     {  
         if (e.getSource() == btn1)  
          { 
-            String id = tf1.getText();  
-            String firstName = tf2.getText();   
-            String lastName = tf3.getText();   
-            String email = tf4.getText();   
-            String phoneNumber = tf5.getText();  
-            String street = tf6.getText();  
-            String city = tf7.getText(); 
-            String state = tf8.getText(); 
-            String zipcode = tf9.getText(); 
+            Address address = new Address(tf9.getText(), tf10.getText(), tf11.getText(), tf12.getText());
+            Author author = new Author(tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), address, tf13.getText());
             
-            Address address = new Address(street, city, state, zipcode);
-            Member member = new Member(id, firstName, lastName, email, phoneNumber, address);
+            List<Author> authors = new ArrayList<>();
+            authors.add(author);
+            
+            Book book = new Book(tf1.getText(), tf2.getText(), Integer.parseInt(tf3.getText()), Long.parseLong(tf4.getText()), authors);
           
                 try  
                 {  
-                	DataAccessFacde.saveObject(member);
-                	JOptionPane.showMessageDialog(btn1, "Data Saved Successfully");   
+                	DataAccessFacde.saveObject(book);
+                	JOptionPane.showMessageDialog(btn1, "Book and Author information saved successfully");   
+                	clearTextFields();
                 }  
                 catch (Exception ex)   
                 {  
@@ -173,17 +173,25 @@ public class BookFrame extends JInternalFrame implements ActionListener {
                 }    
           }   
           else  
-          {  
-            tf1.setText("");  
-            tf2.setText("");  
-            tf3.setText("");  
-            tf4.setText("");  
-            tf5.setText("");  
-            tf6.setText("");  
-            tf7.setText("");  
-            tf8.setText("");  
-            tf9.setText("");  
+          {
+        	  clearTextFields();
           }  
-    }   
+    } 
+    
+    private void clearTextFields() {
+    	 tf1.setText("");  
+         tf2.setText("");  
+         tf3.setText("");  
+         tf4.setText("");  
+         tf5.setText("");  
+         tf6.setText("");  
+         tf7.setText("");  
+         tf8.setText("");  
+         tf9.setText("");  
+         tf10.setText("");  
+         tf11.setText("");  
+         tf12.setText("");  
+         tf13.setText("");  
+    }
 
 }

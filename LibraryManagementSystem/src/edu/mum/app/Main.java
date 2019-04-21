@@ -13,10 +13,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
+import edu.mum.ui.AllMembersFrame;
 import edu.mum.ui.BookFrame;
+import edu.mum.ui.CheckoutFrame;
 import edu.mum.ui.MDIDesktopPane;
 import edu.mum.ui.MemberFrame;
-import edu.mum.ui.NewFrame;
+import edu.mum.ui.TextFrame;
 
 public class Main extends JFrame {
 	private MDIDesktopPane desktop = new MDIDesktopPane();
@@ -86,25 +88,25 @@ public class Main extends JFrame {
 
 		checkoutMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new NewFrame());
+				desktop.add(new CheckoutFrame());
 			}
 		});
 		
 		searchBooktMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new NewFrame());
+				desktop.add(new TextFrame());
 			}
 		});
 		
 		searchMemberMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new NewFrame());
+				desktop.add(new TextFrame());
 			}
 		});
 		
 		searchCheckoutRecordtMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new NewFrame());
+				desktop.add(new AllMembersFrame());
 			}
 		});
 		

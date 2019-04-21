@@ -23,6 +23,22 @@ public class Member extends Person implements Serializable {
 		return "Member [memberId=" + memberId + ", checkouts=" + checkouts + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
 	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public List<Checkout> getCheckouts() {
+		return checkouts;
+	}
+
+	public void setCheckouts(List<Checkout> checkouts) {
+		this.checkouts = checkouts;
+	}
 	
 	
 	

@@ -32,13 +32,19 @@ public class Tester {
 		// Read book file to retrieve all books and display them
 		DataAccessFacde.setFileName("Book");
 		List<Book> books = DataAccessFacde.getFileContents();
-		System.out.println(books);
+		for(Book book: books) {
+			System.out.println(book);
+		}
+		
 		
 		System.out.println("=========================");
-		// Read book file to retrieve all books and display them
+		// Read Member file to retrieve all members and display them
 		DataAccessFacde.setFileName("Member");
 		List<Member> members = DataAccessFacde.getFileContents();
-		System.out.println(members);
+		for(Member member: members) {
+			System.out.println(member);
+		}
+		
 		
 		
 //		Book b1 = new Book("978-3-16-148410-0", "objectorented", "zini", 10, 14);

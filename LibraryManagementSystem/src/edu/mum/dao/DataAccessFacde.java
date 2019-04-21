@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import mum.edu.domain.Book;
@@ -17,7 +18,8 @@ public class DataAccessFacde {
 	
 	private static List fileContents = new ArrayList<>();
 	private static String fileName = null;
-	//private static HashMap<String, Book> books = new HashMap<>();
+	private static HashMap<String, Book> books = new HashMap<>();
+	private static HashMap<String, Member> members = new HashMap<>();
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") + "//src//edu//mum//db//";
 
@@ -105,6 +107,35 @@ public class DataAccessFacde {
 
 		}
 
+	}
+
+	//******************** Search Methods **************//
+	public static Book  getBook(String isbnNumber) {
+		fileName = "Book";
+		readFile();
+		for(Object obj: fileContents) {
+			Book b = (Book)obj;
+			books.put(b.getIsbn(), b);
+		}
+		
+		if(books.containsKey(isbnNumber))
+			return books.get(isbnNumber);
+		
+		return null;
+	}
+	
+	public static Member  getMember(String memberId) {
+		fileName = "Member";
+		readFile();
+		for(Object obj: fileContents) {
+			Member m = (Member)obj;
+			members.put(m.getMemberId(), m);
+		}
+		
+		if(members.containsKey(memberId))
+			return members.get(memberId);
+		
+		return null;
 	}
 
 }

@@ -19,7 +19,6 @@ public class Checkout implements Serializable {
 	}
 	
 	public Checkout(List<Book> books, Member member, LocalDate checkoutDate, LocalDate dueDate) {
-		super();
 		this.books = books;
 		this.member = member;
 		this.checkoutDate = checkoutDate;
