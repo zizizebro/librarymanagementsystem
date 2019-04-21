@@ -112,8 +112,7 @@ public class Main extends JFrame {
 		
 		aboutMeMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				JOptionPane.showMessageDialog(null, "<html>I'm new to java.<br>I have no background in programming.<br>I could use some help Thanks!</html>");
-				//desktop.add(new AboutMeFrame());
+				JOptionPane.showMessageDialog(desktop, "<html>Developed By:<br>Zinash Negga<br><a href='www.google.com'>negga149@gmail.com</a></html>", "About Me", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		

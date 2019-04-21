@@ -38,8 +38,8 @@ public class CheckoutFrame extends JInternalFrame implements ActionListener {
         l1 = new JLabel("Book Checkout Form");  
         l1.setForeground(Color.black);  
         l1.setFont(new Font("Serif", Font.BOLD, 20));  
-        l2 = new JLabel("Member ID:");  
-        l3 = new JLabel("Book ISBN:");  
+        l2 = new JLabel("Book ISBN:");  
+        l3 = new JLabel("Member ID:");  
 
         
         tf1 = new JTextField();  
@@ -84,13 +84,20 @@ public class CheckoutFrame extends JInternalFrame implements ActionListener {
         	books.add(book);
         	
         	Checkout checkout = new Checkout(books, member, LocalDate.now(), LocalDate.now().plusDays(book.getNumberOfDays()));
-        	System.out.println("CHECKOUT RECORD: \n" + checkout);
-//            Address address = new Address(street, city, state, zipcode);
-//            Member member = new Member(id, firstName, lastName, email, phoneNumber, address);
+        	member.addCheckoutRecord(checkout);
+        	
+        	System.out.println("CHECKOUT RECORD");
+        	System.out.println("updated member info");
+        	
+//        	System.out.println("CHECKOUT RECORD: \n" + checkout);
+//        	System.out.println("updated member info: \n" + member);
+        	
+        	
           
                 try  
                 {  
-//                	DataAccessFacde.saveObject(member);
+                	DataAccessFacde.saveObject(checkout);
+                	DataAccessFacde.updateMemberCheckoutRecord(member);
                 	JOptionPane.showMessageDialog(btn1, "Data Saved Successfully"); 
                 	clearTextFields();
                 }  

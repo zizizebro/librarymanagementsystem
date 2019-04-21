@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import mum.edu.domain.Book;
+import mum.edu.domain.Checkout;
 import mum.edu.domain.Member;
 
 public class DataAccessFacde {
@@ -32,6 +33,7 @@ public class DataAccessFacde {
 //	}
 
 	public static List getFileContents() {
+		fileContents = null;
 		readFile();
 		return fileContents;
 	}
@@ -49,64 +51,54 @@ public class DataAccessFacde {
 
 		// fileName = obj.getClass().getSimpleName();
 		System.out.println("writing to file: " + fileName);
+		
 		try {
 
 			FileOutputStream fileOutputStream = new FileOutputStream(OUTPUT_DIR + fileName);
 			ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
 			output.writeObject(obj);
 
-			fileName = null;
+			//fileName = null;
 			output.close();
 
 		} catch (FileNotFoundException e) {
-
 			e.printStackTrace();
-
 		} catch (IOException e) {
-
 			e.printStackTrace();
-
 		}
-
 	}
 
 	public static void readFile() {
-		// System.out.println("reading from file: " + fileName);
+		System.out.println("reading from file: " + fileName);
 
 		try {
 			FileInputStream fileInputStream = new FileInputStream(new File(OUTPUT_DIR + fileName));
-
 			ObjectInputStream input = new ObjectInputStream(fileInputStream);
-			//fileContents = (ArrayList<Book>) input.readObject();
 
-				if(fileName.equals("Member"))
+			if (fileName.equals("Member"))
+				fileContents = (ArrayList<Member>) input.readObject();
 
-					fileContents =  (ArrayList<Member>) input.readObject();
+			else if (fileName.equals("Book"))
+				fileContents = (ArrayList<Book>) input.readObject();
 
-				else if(fileName.equals("Book"))
+			else if (fileName.equals("Checkout"))
+				fileContents = (List<Checkout>) input.readObject(); // (ArrayList<Periodical>)input.readObject();
+			else {
+				System.out.println("FILE NAME TO BE READ NOT SET");
+			}
 
-					fileContents =  (ArrayList<Book>) input.readObject();
-
-				else
-
-						fileContents =  (List)input.readObject(); //(ArrayList<Periodical>)input.readObject();
-
+			//fileName = null;
 			input.close();
 
-		} catch (FileNotFoundException e) {
-
+		} catch(FileNotFoundException e) {
 			e.printStackTrace();
-
 		} catch (IOException e) {
-
-			// e.printStackTrace();
-
-		} catch (ClassNotFoundException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 	}
 
 	//******************** Search Methods **************//
@@ -136,6 +128,29 @@ public class DataAccessFacde {
 			return members.get(memberId);
 		
 		return null;
+	}
+	
+	public static void updateMemberCheckoutRecord(Member member) {
+//		members.put(member.getMemberId(), member);
+//		
+//		Collection<Member> updatedMembers = members.values();
+//		fileContents = new ArrayList<Member>(updatedMembers);
+//		
+//		fileName = "Member";
+//		writeObject(fileContents);
+		
+		 for(Member m: (ArrayList<Member>)fileContents) {
+				//Member m = (Member)obj;
+				if(m.getMemberId().equals(member.getMemberId())) {
+					int index = fileContents.indexOf(m);
+					fileContents.set(index, member);
+					break;
+				}
+			}
+		   setFileName("Member");
+		   writeObject(fileContents);
+		
+		
 	}
 
 }
