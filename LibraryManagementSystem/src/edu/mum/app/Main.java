@@ -13,12 +13,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
+import edu.mum.ui.AllBooksFrame;
+import edu.mum.ui.AllCheckoutsFrame;
 import edu.mum.ui.AllMembersFrame;
 import edu.mum.ui.BookFrame;
 import edu.mum.ui.CheckoutFrame;
 import edu.mum.ui.MDIDesktopPane;
 import edu.mum.ui.MemberFrame;
-import edu.mum.ui.TextFrame;
 
 public class Main extends JFrame {
 	private MDIDesktopPane desktop = new MDIDesktopPane();
@@ -32,9 +33,9 @@ public class Main extends JFrame {
 	private JMenu checkoutMenu = new JMenu("Checkout");
 	private JMenuItem checkoutMenuItem = new JMenuItem("Book");
 	
-	private JMenu searchMenu = new JMenu("Search");
-	private JMenuItem searchBooktMenuItem = new JMenuItem("Book");
-	private JMenuItem searchMemberMenuItem = new JMenuItem("Member");
+	private JMenu searchMenu = new JMenu("Report");
+	private JMenuItem searchBooktMenuItem = new JMenuItem("All Books");
+	private JMenuItem searchMemberMenuItem = new JMenuItem("All Members");
 	private JMenuItem searchCheckoutRecordtMenuItem = new JMenuItem("Checkout Record");
 	
 	private JMenu aboutMenu = new JMenu("About");
@@ -94,19 +95,19 @@ public class Main extends JFrame {
 		
 		searchBooktMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new TextFrame());
+				desktop.add(new AllBooksFrame());
 			}
 		});
 		
 		searchMemberMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new TextFrame());
+				desktop.add(new AllMembersFrame());
 			}
 		});
 		
 		searchCheckoutRecordtMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				desktop.add(new AllMembersFrame());
+				desktop.add(new AllCheckoutsFrame());
 			}
 		});
 		
@@ -115,15 +116,13 @@ public class Main extends JFrame {
 				JOptionPane.showMessageDialog(desktop, "<html>Developed By:<br>Zinash Negga<br><a href='www.google.com'>negga149@gmail.com</a></html>", "About Me", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		
-		
 
 	}
 
 	public static void main(String[] args) {
 		
 		Main mdi = new Main();
-		mdi.setSize(800, 600);
+		mdi.setSize(900, 600);
 		mdi.setVisible(true);
 	}
 

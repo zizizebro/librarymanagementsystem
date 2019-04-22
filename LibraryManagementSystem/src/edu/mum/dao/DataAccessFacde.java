@@ -16,7 +16,7 @@ import mum.edu.domain.Checkout;
 import mum.edu.domain.Member;
 
 public class DataAccessFacde {
-	
+
 	private static List fileContents = new ArrayList<>();
 	private static String fileName = null;
 	private static HashMap<String, Book> books = new HashMap<>();
@@ -27,10 +27,6 @@ public class DataAccessFacde {
 	public static void setFileName(String fName) {
 		fileName = fName;
 	}
-
-//	public static void setFileContents(List contents) {
-//		fileContents = contents;
-//	}
 
 	public static List getFileContents() {
 		fileContents = null;
@@ -48,17 +44,13 @@ public class DataAccessFacde {
 	}
 
 	public static void writeObject(List obj) {
+		System.out.println("WRITING TO FILE: " + fileName);
 
-		// fileName = obj.getClass().getSimpleName();
-		System.out.println("writing to file: " + fileName);
-		
 		try {
 
 			FileOutputStream fileOutputStream = new FileOutputStream(OUTPUT_DIR + fileName);
 			ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
 			output.writeObject(obj);
-
-			//fileName = null;
 			output.close();
 
 		} catch (FileNotFoundException e) {
@@ -86,71 +78,67 @@ public class DataAccessFacde {
 			else {
 				System.out.println("FILE NAME TO BE READ NOT SET");
 			}
-
-			//fileName = null;
+			
 			input.close();
 
-		} catch(FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	//******************** Search Methods **************//
-	public static Book  getBook(String isbnNumber) {
+	// ******************** Search Methods **************//
+	public static Book getBook(String isbnNumber) {
 		fileName = "Book";
 		readFile();
-		for(Object obj: fileContents) {
-			Book b = (Book)obj;
+		for (Object obj : fileContents) {
+			Book b = (Book) obj;
 			books.put(b.getIsbn(), b);
 		}
-		
-		if(books.containsKey(isbnNumber))
+
+		if (books.containsKey(isbnNumber))
 			return books.get(isbnNumber);
-		
+
 		return null;
 	}
-	
-	public static Member  getMember(String memberId) {
+
+	public static Member getMember(String memberId) {
 		fileName = "Member";
 		readFile();
-		for(Object obj: fileContents) {
-			Member m = (Member)obj;
+		for (Object obj : fileContents) {
+			Member m = (Member) obj;
 			members.put(m.getMemberId(), m);
 		}
-		
-		if(members.containsKey(memberId))
+
+		if (members.containsKey(memberId))
 			return members.get(memberId);
-		
+
 		return null;
 	}
-	
-	public static void updateMemberCheckoutRecord(Member member) {
-//		members.put(member.getMemberId(), member);
-//		
-//		Collection<Member> updatedMembers = members.values();
-//		fileContents = new ArrayList<Member>(updatedMembers);
-//		
-//		fileName = "Member";
+
+//	public static void updateMemberCheckoutRecord(Member member) {
+////		members.put(member.getMemberId(), member);
+////		
+////		Collection<Member> updatedMembers = members.values();
+////		fileContents = new ArrayList<Member>(updatedMembers);
+////		
+////		fileName = "Member";
+////		writeObject(fileContents);
+//
+//		for (Member m : (ArrayList<Member>) fileContents) {
+//			// Member m = (Member)obj;
+//			if (m.getMemberId().equals(member.getMemberId())) {
+//				int index = fileContents.indexOf(m);
+//				fileContents.set(index, member);
+//				break;
+//			}
+//		}
+//		setFileName("Member");
 //		writeObject(fileContents);
-		
-		 for(Member m: (ArrayList<Member>)fileContents) {
-				//Member m = (Member)obj;
-				if(m.getMemberId().equals(member.getMemberId())) {
-					int index = fileContents.indexOf(m);
-					fileContents.set(index, member);
-					break;
-				}
-			}
-		   setFileName("Member");
-		   writeObject(fileContents);
-		
-		
-	}
+//
+//	}
 
 }

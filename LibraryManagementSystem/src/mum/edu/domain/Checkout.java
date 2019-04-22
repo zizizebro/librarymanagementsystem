@@ -73,49 +73,4 @@ public class Checkout implements Serializable {
 				+ dueDate + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((books == null) ? 0 : books.hashCode());
-		result = prime * result + ((checkoutDate == null) ? 0 : checkoutDate.hashCode());
-		result = prime * result + ((dueDate == null) ? 0 : dueDate.hashCode());
-		result = prime * result + ((member == null) ? 0 : member.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Checkout other = (Checkout) obj;
-		if (books == null) {
-			if (other.books != null)
-				return false;
-		} else if (!books.equals(other.books))
-			return false;
-		if (checkoutDate == null) {
-			if (other.checkoutDate != null)
-				return false;
-		} else if (!checkoutDate.equals(other.checkoutDate))
-			return false;
-		if (dueDate == null) {
-			if (other.dueDate != null)
-				return false;
-		} else if (!dueDate.equals(other.dueDate))
-			return false;
-		if (member == null) {
-			if (other.member != null)
-				return false;
-		} else if (!member.equals(other.member))
-			return false;
-		return true;
-	}
-	
-	
-	
 }

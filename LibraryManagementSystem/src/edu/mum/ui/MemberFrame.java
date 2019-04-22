@@ -19,15 +19,12 @@ public class MemberFrame extends JInternalFrame implements ActionListener {
 	
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10;  
     JTextField tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8, tf9; 
-    JButton btn1, btn2;  
-    //JPasswordField p1, p2; 
+    JButton btn1, btn2; 
     
     public MemberFrame() {
     	setVisible(true);  
         setSize(700, 550);  
-        setLayout(null);  
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-        
+        setLayout(null);    
         setClosable(true);
         
         setTitle("Add Member");  
@@ -125,7 +122,7 @@ public class MemberFrame extends JInternalFrame implements ActionListener {
                 try  
                 {  
                 	DataAccessFacde.saveObject(member);
-                	JOptionPane.showMessageDialog(btn1, "Data Saved Successfully"); 
+                	JOptionPane.showMessageDialog(tf5, "Member information saved successfully"); 
                 	clearTextFields();
                 }  
                 catch (Exception ex)   

@@ -23,14 +23,12 @@ public class CheckoutFrame extends JInternalFrame implements ActionListener {
 	
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10;  
     JTextField tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8, tf9; 
-    JButton btn1, btn2;  
-    //JPasswordField p1, p2; 
+    JButton btn1, btn2; 
     
     public CheckoutFrame() {
     	setVisible(true);  
         setSize(500, 300);  
-        setLayout(null);  
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        setLayout(null);   
         
         setClosable(true);
         
@@ -75,30 +73,28 @@ public class CheckoutFrame extends JInternalFrame implements ActionListener {
         if (e.getSource() == btn1)  
          { 
         	Book book = DataAccessFacde.getBook(tf1.getText());
-        	System.out.println("book to be checkedout: " + book);
+        	System.out.println("BOOK TO BE CHECKEDOUT: " + book);
         	
         	Member member = DataAccessFacde.getMember(tf2.getText());
-        	System.out.println("Member checking: " + member);
+        	System.out.println("BORROWING MEMBER: " + member);
         	
         	List<Book> books = new ArrayList<>();
         	books.add(book);
         	
         	Checkout checkout = new Checkout(books, member, LocalDate.now(), LocalDate.now().plusDays(book.getNumberOfDays()));
-        	member.addCheckoutRecord(checkout);
+        	//member.addCheckoutRecord(checkout);
         	
-        	System.out.println("CHECKOUT RECORD");
-        	System.out.println("updated member info");
-        	
-//        	System.out.println("CHECKOUT RECORD: \n" + checkout);
-//        	System.out.println("updated member info: \n" + member);
+        	System.out.println("U MADE IT THIS FAR");
+        	System.out.println("CHECKOUT RECORD: \n" + checkout);
+        	System.out.println("UPDATED MEMBER INFO: \n" + member);
         	
         	
           
                 try  
                 {  
                 	DataAccessFacde.saveObject(checkout);
-                	DataAccessFacde.updateMemberCheckoutRecord(member);
-                	JOptionPane.showMessageDialog(btn1, "Data Saved Successfully"); 
+                	//DataAccessFacde.updateMemberCheckoutRecord(member);
+                	JOptionPane.showMessageDialog(btn1, "Checkout information saved successfully"); 
                 	clearTextFields();
                 }  
                 catch (Exception ex)   

@@ -24,17 +24,14 @@ public class BookFrame extends JInternalFrame implements ActionListener {
 	JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15;  
     JTextField tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8, tf9, tf10, tf11, tf12, tf13; 
     JButton btn1, btn2;  
-    //JPasswordField p1, p2; 
     
     public BookFrame() {
     	setVisible(true);  
         setSize(800, 550);  
-        setLayout(null);  
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-        
+        setLayout(null);   
         setClosable(true);
-        
         setTitle("Add Book");  
+        
         l1 = new JLabel("Book Information");  
         l1.setForeground(Color.black);  
         l1.setFont(new Font("Serif", Font.BOLD, 20));
@@ -164,7 +161,7 @@ public class BookFrame extends JInternalFrame implements ActionListener {
                 try  
                 {  
                 	DataAccessFacde.saveObject(book);
-                	JOptionPane.showMessageDialog(btn1, "Book and Author information saved successfully");   
+                	JOptionPane.showMessageDialog(tf4, "Book and Author information saved successfully");   
                 	clearTextFields();
                 }  
                 catch (Exception ex)   

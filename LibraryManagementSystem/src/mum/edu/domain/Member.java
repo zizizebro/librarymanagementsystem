@@ -17,13 +17,7 @@ public class Member extends Person implements Serializable {
 		super(firstName, lastName, email, phoneNumber, address);
 		this.memberId = memberId;
 	}
-
-	@Override
-	public String toString() {
-		return "Member [memberId=" + memberId + ", checkouts=" + checkouts + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
-	}
-
+	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -43,39 +37,11 @@ public class Member extends Person implements Serializable {
 	public void addCheckoutRecord(Checkout checkout) {
 		this.checkouts.add(checkout);
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((checkouts == null) ? 0 : checkouts.hashCode());
-		result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
-		return result;
-	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Member other = (Member) obj;
-		if (checkouts == null) {
-			if (other.checkouts != null)
-				return false;
-		} else if (!checkouts.equals(other.checkouts))
-			return false;
-		if (memberId == null) {
-			if (other.memberId != null)
-				return false;
-		} else if (!memberId.equals(other.memberId))
-			return false;
-		return true;
+	public String toString() {
+		return "Member [memberId=" + memberId + ", checkouts=" + checkouts + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
 	}
 	
-	
-	
-
 }
